@@ -25,7 +25,7 @@ import retrofit2.Callback;
  * Created by db on 2017/10/29.
  */
 
-public class RestClient {
+public class RestClient{
     private final String URL;
     private static final WeakHashMap<String,Object> PARAMS = RestCreator.getParams();
     private final IRequest REQUEST;

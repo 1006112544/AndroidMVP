@@ -17,7 +17,7 @@ import okhttp3.RequestBody;
  * Created by db on 2017/10/29.
  */
 
-public class RestClientBuilder {
+public class RestClientBuilder{
     private String mUrl = null;
     private static final WeakHashMap<String,Object> PARAMS = RestCreator.getParams();
     private IRequest mRequest = null;
@@ -30,6 +30,7 @@ public class RestClientBuilder {
     private String mDownloadDir = null;
     private String mExtension = null;
     private String mName = null;
+    private Class mBeanClass = null;
     private IDownloadCallBack mDownloadCallBack = null;
 
     RestClientBuilder(){
@@ -84,8 +85,9 @@ public class RestClientBuilder {
         return this;
     }
 
-    public final RestClientBuilder success(ISuccess iSuccess) {
+    public final RestClientBuilder success(ISuccess iSuccess,Class BeanClass) {
         this.mSuccess = iSuccess;
+        this.mBeanClass = BeanClass;
         return this;
     }
 

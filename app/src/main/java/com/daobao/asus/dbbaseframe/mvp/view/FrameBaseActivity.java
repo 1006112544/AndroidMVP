@@ -4,7 +4,11 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
+
 import com.daobao.asus.dbbaseframe.mvp.presenter.FrameBasePresenter;
+import com.daobao.asus.dbbaseframe.netUtil.CallBack.ISuccess;
+import com.daobao.asus.dbbaseframe.netUtil.RestClient;
 import com.daobao.asus.dbbaseframe.util.NetStateUtil;
 import static com.daobao.asus.dbbaseframe.util.NetStateUtil.NETWORK_FAIL;
 
@@ -36,7 +40,7 @@ public abstract class FrameBaseActivity<P extends FrameBasePresenter> extends Ap
 
     @Override
     public void showMessage(String message){
-
+        Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
     }
 
     @Override

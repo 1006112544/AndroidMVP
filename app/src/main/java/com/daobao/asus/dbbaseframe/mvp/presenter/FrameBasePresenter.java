@@ -17,7 +17,7 @@ public abstract class FrameBasePresenter<V extends IView> implements IPresenter{
 
     @Override
     public void OnDestroy(@NonNull LifecycleOwner owner) {
-        //解绑V层和M层 避免导致内存泄漏
+        //解绑V层 避免导致内存泄漏
         mView = null;
     }
 

@@ -20,7 +20,7 @@ import retrofit2.Response;
  * Created by db on 2017/10/30.
  */
 
-public class DownLoadHandler {
+public class DownLoadHandler{
 
     private final String URL;
     private static final WeakHashMap<String,Object> PARAMS = RestCreator.getParams();

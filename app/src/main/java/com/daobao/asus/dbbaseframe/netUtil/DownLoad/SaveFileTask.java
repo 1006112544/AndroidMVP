@@ -31,7 +31,7 @@ public class SaveFileTask extends AsyncTask<Object,Void,File> {
     private Context context;
     private long DownloadLenth=0;
     private IDownloadCallBack DownLoadCallBack;
-    public SaveFileTask(IRequest request, ISuccess success,Context context,IDownloadCallBack DownLoadCallBack) {
+    public SaveFileTask(IRequest request, ISuccess success, Context context, IDownloadCallBack DownLoadCallBack) {
         REQUEST = request;
         SUCCESS = success;
         this.context = context;
