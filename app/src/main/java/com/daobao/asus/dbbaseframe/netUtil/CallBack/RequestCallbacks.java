@@ -2,8 +2,6 @@ package com.daobao.asus.dbbaseframe.netUtil.CallBack;
 
 import android.support.annotation.NonNull;
 
-import com.google.gson.Gson;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
