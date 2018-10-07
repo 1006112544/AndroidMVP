@@ -5,10 +5,11 @@ import android.arch.lifecycle.LifecycleOwner;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.NonNull;
+
 import com.daobao.asus.dbbaseframe.mvp.model.BaseModel;
 import com.daobao.asus.dbbaseframe.mvp.view.IView;
-import java.lang.ref.WeakReference;
 
+import java.lang.ref.WeakReference;
 
 /**
  * Created by db on 2018/9/22.
@@ -17,13 +18,11 @@ public abstract class BasePresenter<M extends BaseModel,V extends IView> impleme
 
     public V mView;
     public M mModel;
-    public BaseHandler mHandler;
 
     @SuppressLint("HandlerLeak")
     public BasePresenter(V view){
         this.mView = view;
-        this.mModel = binModel();
-        this.mHandler = getHandler();
+        this.mModel = binModel(getHandler());
     }
 
     @Override
@@ -32,16 +31,12 @@ public abstract class BasePresenter<M extends BaseModel,V extends IView> impleme
         mView = null;
         mModel.onDestroy();
         mModel = null;
-        mHandler = null;
     }
 
-    public abstract M binModel();
+    public abstract M binModel(Handler handler);
 
-    public BaseHandler getHandler(){
-        if(mHandler==null){
-            mHandler = new BaseHandler(this);
-        }
-        return mHandler;
+    public Handler getHandler(){
+        return new BaseHandler(this);
     }
 
     /**

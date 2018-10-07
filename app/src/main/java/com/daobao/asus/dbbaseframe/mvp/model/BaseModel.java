@@ -1,18 +1,17 @@
 package com.daobao.asus.dbbaseframe.mvp.model;
 
 
+import android.os.Handler;
 import android.os.Message;
-
-import com.daobao.asus.dbbaseframe.mvp.presenter.BasePresenter.BaseHandler;
 
 /**
  * Created by db on 2018/9/26.
  */
 public abstract class BaseModel {
 
-    private BaseHandler mHandler; //获取P层中的Handler来通信
+    private Handler mHandler; //获取P层中的Handler来通信
 
-    public BaseModel(BaseHandler handler){
+    public BaseModel(Handler handler){
         this.mHandler = handler;
     }
 
@@ -34,6 +33,13 @@ public abstract class BaseModel {
      */
     public void sendMessageDelayed(Message message,long delayedTime){
         mHandler.sendMessageDelayed(message,delayedTime);
+    }
+
+    /**
+     * 发送空消息到P层
+     */
+    public void sendEmptyMessage(int what){
+        mHandler.sendEmptyMessage(what);
     }
 
 }

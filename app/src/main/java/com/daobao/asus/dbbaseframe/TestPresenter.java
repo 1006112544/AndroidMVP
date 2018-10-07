@@ -1,5 +1,6 @@
 package com.daobao.asus.dbbaseframe;
 
+import android.os.Handler;
 import android.os.Message;
 
 import com.daobao.asus.dbbaseframe.mvp.presenter.BasePresenter;
@@ -14,13 +15,17 @@ public class TestPresenter extends BasePresenter<TestModel,TestActivity> {
     }
 
     @Override
-    public TestModel binModel() {
-        return new TestModel(mHandler);
+    public TestModel binModel(Handler handler) {
+        return new TestModel(handler);
     }
 
     @Override
     public void modelResponse(Message msg) {
+        mView.print();
+    }
 
+    public void send(){
+        mModel.sendEmptyMessage(1);
     }
 
 }

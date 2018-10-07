@@ -8,12 +8,13 @@ import android.widget.Toast;
 
 import com.daobao.asus.dbbaseframe.mvp.presenter.BasePresenter;
 import com.daobao.asus.dbbaseframe.util.NetStateUtil;
+
 import static com.daobao.asus.dbbaseframe.util.NetStateUtil.NETWORK_FAIL;
 
 /**
  * Created by db on 2018/9/22.
  */
-public abstract class BaseActivity<P extends BasePresenter> extends AppCompatActivity implements IView{
+public abstract class BaseActivity<P extends BasePresenter> extends AppCompatActivity implements IView {
 
     public P mPresenter;
 
@@ -34,6 +35,8 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
         //解绑P层 避免内存泄漏
         getLifecycle().removeObserver(mPresenter);
         mPresenter = null;
+        //通知系统进行一次回收
+        System.gc();
     }
 
     @Override
