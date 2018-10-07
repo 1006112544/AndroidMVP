@@ -12,6 +12,8 @@ import com.daobao.asus.dbbaseframe.mvp.view.IView;
 import java.lang.ref.WeakReference;
 
 /**
+ * 基础P层
+ *
  * Created by db on 2018/9/22.
  */
 public abstract class BasePresenter<M extends BaseModel,V extends IView> implements IPresenter{
@@ -25,6 +27,11 @@ public abstract class BasePresenter<M extends BaseModel,V extends IView> impleme
         this.mModel = binModel(getHandler());
     }
 
+    /**
+     *我们通过实现IPresenter中的OnDestroy方法来解除持有
+     *
+     * @param owner 生命周期管理者
+     */
     @Override
     public void OnDestroy(@NonNull LifecycleOwner owner) {
         //解绑V层 避免导致内存泄漏
@@ -35,6 +42,11 @@ public abstract class BasePresenter<M extends BaseModel,V extends IView> impleme
 
     public abstract M binModel(Handler handler);
 
+    /**
+     * 获取handler的方法
+     *
+     * @return BaseHandler
+     */
     public Handler getHandler(){
         return new BaseHandler(this);
     }

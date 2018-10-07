@@ -12,6 +12,8 @@ import com.daobao.asus.dbbaseframe.util.NetStateUtil;
 import static com.daobao.asus.dbbaseframe.util.NetStateUtil.NETWORK_FAIL;
 
 /**
+ * 基础V层 Activity
+ *
  * Created by db on 2018/9/22.
  */
 public abstract class BaseActivity<P extends BasePresenter> extends AppCompatActivity implements IView {

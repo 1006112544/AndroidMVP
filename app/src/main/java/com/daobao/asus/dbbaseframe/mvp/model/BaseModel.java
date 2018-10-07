@@ -5,6 +5,8 @@ import android.os.Handler;
 import android.os.Message;
 
 /**
+ * 基础M层
+ *
  * Created by db on 2018/9/26.
  */
 public abstract class BaseModel {
@@ -15,6 +17,9 @@ public abstract class BaseModel {
         this.mHandler = handler;
     }
 
+    /**
+     * 用于解除持有
+     */
     public void onDestroy(){
         mHandler = null;
     }

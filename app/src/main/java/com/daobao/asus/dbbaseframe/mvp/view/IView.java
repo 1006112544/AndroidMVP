@@ -3,6 +3,8 @@ package com.daobao.asus.dbbaseframe.mvp.view;
 import android.content.Context;
 
 /**
+ * V层接口
+ *
  * Created by db on 2018/9/22.
  */
 public interface IView {
