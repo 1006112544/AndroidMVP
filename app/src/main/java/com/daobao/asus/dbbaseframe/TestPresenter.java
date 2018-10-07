@@ -21,11 +21,15 @@ public class TestPresenter extends BasePresenter<TestModel,TestActivity> {
 
     @Override
     public void modelResponse(Message msg) {
-        mView.print();
+        switch (msg.what){
+            case 0:
+                mView.loginReseponse(msg);
+                break;
+        }
     }
 
-    public void send(){
-        mModel.sendEmptyMessage(1);
+    public void login(){
+        mModel.login();
     }
 
 }
