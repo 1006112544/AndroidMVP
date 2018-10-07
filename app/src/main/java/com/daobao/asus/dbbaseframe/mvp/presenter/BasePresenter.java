@@ -71,5 +71,9 @@ public abstract class BasePresenter<M extends BaseModel,V extends IView> impleme
         }
     }
 
+    /**
+     * 接收 M层返回的消息
+     * @param msg
+     */
     public abstract void modelResponse(Message msg);
 }
