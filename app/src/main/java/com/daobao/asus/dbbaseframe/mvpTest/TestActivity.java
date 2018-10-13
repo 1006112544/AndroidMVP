@@ -2,7 +2,6 @@ package com.daobao.asus.dbbaseframe.mvpTest;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-
 import com.daobao.asus.dbbaseframe.mvp.view.BaseActivity;
 
 /**
