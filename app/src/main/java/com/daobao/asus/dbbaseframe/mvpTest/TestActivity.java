@@ -1,35 +1,28 @@
-package com.daobao.asus.dbbaseframe;
+package com.daobao.asus.dbbaseframe.mvpTest;
 
-
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Message;
 import android.support.annotation.Nullable;
-import android.util.Log;
-import android.view.View;
-import android.widget.Toast;
 
 import com.daobao.asus.dbbaseframe.mvp.view.BaseActivity;
 
 /**
- * Created by db on 2018/9/26.
+ * Created by db on 2018/10/13.
  */
-public class TestActivity extends BaseActivity<TestPresenter> {
-
+public class TestActivity extends BaseActivity<TestPresenter> implements TestContract.View{
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //模拟请求登录
+        //模拟登陆
         mPresenter.login();
     }
-
 
     @Override
     public TestPresenter binPresenter() {
         return new TestPresenter(this);
     }
 
-    public void loginReseponse(Message msg){
-        showMessage((String) msg.obj);
+    @Override
+    public void loginResponse(String msg) {
+        showMessage(msg);
     }
 }

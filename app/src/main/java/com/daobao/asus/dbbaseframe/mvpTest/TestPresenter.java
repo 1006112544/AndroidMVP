@@ -1,4 +1,4 @@
-package com.daobao.asus.dbbaseframe;
+package com.daobao.asus.dbbaseframe.mvpTest;
 
 import android.os.Handler;
 import android.os.Message;
@@ -6,10 +6,9 @@ import android.os.Message;
 import com.daobao.asus.dbbaseframe.mvp.presenter.BasePresenter;
 
 /**
- * Created by db on 2018/9/26.
+ * Created by db on 2018/10/13.
  */
-public class TestPresenter extends BasePresenter<TestModel,TestActivity> {
-
+public class TestPresenter extends BasePresenter<TestModel,TestActivity>{
     public TestPresenter(TestActivity view) {
         super(view);
     }
@@ -22,8 +21,8 @@ public class TestPresenter extends BasePresenter<TestModel,TestActivity> {
     @Override
     public void modelResponse(Message msg) {
         switch (msg.what){
-            case 0:
-                mView.loginReseponse(msg);
+            case 1:
+                mView.loginResponse((String) msg.obj);
                 break;
         }
     }
@@ -31,5 +30,4 @@ public class TestPresenter extends BasePresenter<TestModel,TestActivity> {
     public void login(){
         mModel.login();
     }
-
 }

@@ -7,6 +7,7 @@ import android.os.Message;
 import android.support.annotation.NonNull;
 
 import com.daobao.asus.dbbaseframe.mvp.model.BaseModel;
+import com.daobao.asus.dbbaseframe.mvp.view.BaseActivity;
 import com.daobao.asus.dbbaseframe.mvp.view.IView;
 
 import java.lang.ref.WeakReference;
