@@ -30,7 +30,6 @@ public class RestClientBuilder{
     private String mDownloadDir = null;
     private String mExtension = null;
     private String mName = null;
-    private Class mBeanClass = null;
     private IDownloadCallBack mDownloadCallBack = null;
 
     RestClientBuilder(){
@@ -85,9 +84,8 @@ public class RestClientBuilder{
         return this;
     }
 
-    public final RestClientBuilder success(ISuccess iSuccess,Class BeanClass) {
+    public final RestClientBuilder success(ISuccess iSuccess) {
         this.mSuccess = iSuccess;
-        this.mBeanClass = BeanClass;
         return this;
     }
 
