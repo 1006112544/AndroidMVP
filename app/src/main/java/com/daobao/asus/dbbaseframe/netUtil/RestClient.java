@@ -3,7 +3,6 @@ package com.daobao.asus.dbbaseframe.netUtil;
 import android.content.Context;
 
 import com.daobao.asus.dbbaseframe.netUtil.CallBack.IDownloadCallBack;
-import com.daobao.asus.dbbaseframe.netUtil.CallBack.IError;
 import com.daobao.asus.dbbaseframe.netUtil.CallBack.IFailure;
 import com.daobao.asus.dbbaseframe.netUtil.CallBack.IRequest;
 import com.daobao.asus.dbbaseframe.netUtil.CallBack.ISuccess;
@@ -34,7 +33,6 @@ public class RestClient{
     private final String DOWNLOAD_DIR;
     private final String EXTENSION;
     private final String NAME;
-    private final IError ERROR;
     private final RequestBody REQUESTBODY;
     private final Context context;
     private final File FILE;
@@ -48,7 +46,6 @@ public class RestClient{
                IRequest request,
                ISuccess success,
                IFailure failure,
-               IError error,
                RequestBody body,
                File file,
                Context context,
@@ -61,7 +58,6 @@ public class RestClient{
         this.REQUEST = request;
         this.SUCCESS = success;
         this.FAILURE = failure;
-        this.ERROR = error;
         this.REQUESTBODY = body;
         this.FILE = file;
         this.context = context;
@@ -122,7 +118,7 @@ public class RestClient{
      */
     private Callback<String> getRequestCallback()
     {
-        return new RequestCallbacks(REQUEST,SUCCESS,FAILURE,ERROR);
+        return new RequestCallbacks(REQUEST,SUCCESS,FAILURE);
     }
 
     public final void get()
@@ -164,7 +160,7 @@ public class RestClient{
     }
 
     public final void download(){
-        new DownLoadHandler(URL,REQUEST,DOWNLOAD_DIR,EXTENSION,NAME,SUCCESS,FAILURE,ERROR,context,DownloadCallBack)
+        new DownLoadHandler(URL,REQUEST,DOWNLOAD_DIR,EXTENSION,NAME,SUCCESS,FAILURE,context,DownloadCallBack)
                 .handleDownload();
     }
 

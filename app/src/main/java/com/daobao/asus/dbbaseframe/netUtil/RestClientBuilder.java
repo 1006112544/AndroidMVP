@@ -3,7 +3,6 @@ package com.daobao.asus.dbbaseframe.netUtil;
 import android.content.Context;
 
 import com.daobao.asus.dbbaseframe.netUtil.CallBack.IDownloadCallBack;
-import com.daobao.asus.dbbaseframe.netUtil.CallBack.IError;
 import com.daobao.asus.dbbaseframe.netUtil.CallBack.IFailure;
 import com.daobao.asus.dbbaseframe.netUtil.CallBack.IRequest;
 import com.daobao.asus.dbbaseframe.netUtil.CallBack.ISuccess;
@@ -23,7 +22,6 @@ public class RestClientBuilder{
     private IRequest mRequest = null;
     private ISuccess mSuccess = null;
     private IFailure mFailure = null;
-    private IError mError = null;
     private RequestBody mBody = null;
     private Context mContext = null;
     private File mFile = null;
@@ -89,11 +87,6 @@ public class RestClientBuilder{
         return this;
     }
 
-    public final RestClientBuilder error(IError iError) {
-        this.mError = iError;
-        return this;
-    }
-
     public final RestClientBuilder failure(IFailure iFailure) {
         this.mFailure = iFailure;
         return this;
@@ -114,7 +107,7 @@ public class RestClientBuilder{
         return new RestClient(mUrl, PARAMS,
                 mDownloadDir, mExtension, mName,
                 mRequest, mSuccess, mFailure,
-                mError, mBody, mFile, mContext,mDownloadCallBack);
+                mBody, mFile, mContext,mDownloadCallBack);
     }
 
 }

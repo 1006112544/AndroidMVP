@@ -5,6 +5,6 @@ package com.daobao.asus.dbbaseframe.netUtil;
  * Created by db on 2018/9/22.
  */
 public class NetConfig {
-    public static final int TIME_OUT = 60;
-    public static final String BASE_URL = "";
+    public static final int TIME_OUT = 60;  //单位秒
+    public static final String BASE_URL = "http://www.baidu.com";
 }

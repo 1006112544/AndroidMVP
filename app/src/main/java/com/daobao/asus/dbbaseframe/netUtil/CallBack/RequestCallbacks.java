@@ -14,13 +14,11 @@ public class RequestCallbacks implements Callback<String>{
     private final IRequest REQUEST;
     private final ISuccess SUCCESS;
     private final IFailure FAILURE;
-    private final IError ERROR;
 
-    public RequestCallbacks(IRequest request, ISuccess success, IFailure failure, IError error) {
+    public RequestCallbacks(IRequest request, ISuccess success, IFailure failure) {
         REQUEST = request;
         SUCCESS = success;
         FAILURE = failure;
-        ERROR = error;
     }
 
     @Override
@@ -33,8 +31,8 @@ public class RequestCallbacks implements Callback<String>{
             }
         }
         else {
-            if(ERROR!=null) {
-                ERROR.onError(response.code(),response.message());
+            if(FAILURE!=null) {
+                FAILURE.onFailure();
             }
         }
     }

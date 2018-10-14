@@ -3,9 +3,7 @@ package com.daobao.asus.dbbaseframe.netUtil.DownLoad;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
-
 import com.daobao.asus.dbbaseframe.netUtil.CallBack.IDownloadCallBack;
-import com.daobao.asus.dbbaseframe.netUtil.CallBack.IError;
 import com.daobao.asus.dbbaseframe.netUtil.CallBack.IFailure;
 import com.daobao.asus.dbbaseframe.netUtil.CallBack.IRequest;
 import com.daobao.asus.dbbaseframe.netUtil.CallBack.ISuccess;
@@ -30,7 +28,6 @@ public class DownLoadHandler{
     private final String NAME;
     private final ISuccess SUCCESS;
     private final IFailure FAILURE;
-    private final IError ERROR;
     private Context context;
     private IDownloadCallBack DownloadCallBack;
 
@@ -41,7 +38,6 @@ public class DownLoadHandler{
                            String name,
                            ISuccess success,
                            IFailure failure,
-                           IError error,
                            Context context,
                            IDownloadCallBack DownloadCallBack) {
         URL = url;
@@ -51,7 +47,6 @@ public class DownLoadHandler{
         NAME = name;
         SUCCESS = success;
         FAILURE = failure;
-        ERROR = error;
         this.context = context;
         this.DownloadCallBack = DownloadCallBack;
     }
@@ -81,12 +76,12 @@ public class DownLoadHandler{
                                 REQUEST.onRequsetEnd();
                             }
                         }
-                    }else if(ERROR!=null) {
-                        ERROR.onError(response.code(),response.message());
+                    }else if(FAILURE!=null) {
+                        FAILURE.onFailure();
                     }
                 }
-                else if (ERROR!=null) {
-                    ERROR.onError(response.code(),response.message());
+                else if (FAILURE!=null) {
+                    FAILURE.onFailure();
                 }
             }
             @Override
