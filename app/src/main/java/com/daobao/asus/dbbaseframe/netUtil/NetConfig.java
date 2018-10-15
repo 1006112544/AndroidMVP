@@ -6,5 +6,5 @@ package com.daobao.asus.dbbaseframe.netUtil;
  */
 public class NetConfig {
     public static final int TIME_OUT = 60;  //单位秒
-    public static final String BASE_URL = "http://www.baidu.com";
+    public static final String BASE_URL = "http://0.0.0.0:8000";
 }
