@@ -37,14 +37,18 @@ public abstract class BaseModel {
      * 发送延时消息到P层
      */
     public void sendMessageDelayed(Message message,long delayedTime){
-        mHandler.sendMessageDelayed(message,delayedTime);
+        if (mHandler!=null){
+            mHandler.sendMessageDelayed(message,delayedTime);
+        }
     }
 
     /**
      * 发送空消息到P层
      */
     public void sendEmptyMessage(int what){
-        mHandler.sendEmptyMessage(what);
+        if (mHandler!=null){
+            mHandler.sendEmptyMessage(what);
+        }
     }
 
 }

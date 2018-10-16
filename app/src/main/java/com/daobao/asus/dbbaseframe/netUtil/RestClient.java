@@ -103,6 +103,10 @@ public class RestClient{
                         MultipartBody.Part.createFormData("file",FILE.getName(),requestBody);
                 call = RestCreator.getRestService().upload(URL,body);
                 break;
+            case DOWNLOAD:
+                new DownLoadHandler(URL,REQUEST,DOWNLOAD_DIR,EXTENSION,NAME,SUCCESS,FAILURE,context,DownloadCallBack)
+                        .handleDownload();
+                break;
             default:
                 break;
         }
@@ -160,8 +164,7 @@ public class RestClient{
     }
 
     public final void download(){
-        new DownLoadHandler(URL,REQUEST,DOWNLOAD_DIR,EXTENSION,NAME,SUCCESS,FAILURE,context,DownloadCallBack)
-                .handleDownload();
+        request(HttpMethod.DOWNLOAD);
     }
 
 }
