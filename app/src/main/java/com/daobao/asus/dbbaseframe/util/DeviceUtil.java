@@ -11,12 +11,14 @@ import android.os.Build;
 import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.telephony.TelephonyManager;
+
 import java.util.List;
+import java.util.UUID;
 
 
 /**
  * 设备信息工具类
- *
+ * <p>
  * Created by db on 2018/9/22.
  */
 public class DeviceUtil {
@@ -40,7 +42,8 @@ public class DeviceUtil {
 
     /**
      * 获取设备的id
-     * @return 返回Imei设为唯一标识值,如果没有权限则返回null
+     *
+     * @return 返回Imei设为唯一标识值, 如果没有权限则返回null
      */
     @SuppressLint("HardwareIds")
     private String getDeviceId(Context context) {
@@ -50,9 +53,9 @@ public class DeviceUtil {
             return null;
         }
         String deviceId = telephonyManager.getDeviceId();
-        if (deviceId==null){
+        if (deviceId == null) {
             //android.provider.Settings;
-            deviceId= Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
+            deviceId = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
         }
         return deviceId;
     }
@@ -134,4 +137,53 @@ public class DeviceUtil {
                     | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
         }
     }
+
+    /**
+     * 获取UUID
+     *
+     * @param context
+     * @return UUID
+     */
+    public static String getUUID(Context context) {
+        final TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+
+        final String tmDevice, tmSerial, tmPhone, androidId;
+        tmDevice = "" + tm.getDeviceId();
+        tmSerial = "" + tm.getSimSerialNumber();
+        androidId = "" + Settings.Secure.getString(context.getContentResolver(),
+                Settings.Secure.ANDROID_ID);
+
+        UUID deviceUuid = new UUID(androidId.hashCode(), ((long) tmDevice.hashCode() << 32) | tmSerial.hashCode());
+        String uniqueId = deviceUuid.toString();
+
+        return uniqueId;
+    }
+
+    /**
+     * Get screen dormant time, must declare the
+     * 获得屏幕休眠时间，必须声明
+     * {@link Manifest.permission#WRITE_SETTINGS} permission in its manifest.
+     *
+     * @param context
+     * @return dormantTime:ms, default:30s
+     */
+    public static int getScreenDormantTime(Context context) {
+        return Settings.System.getInt(context.getContentResolver(),
+                Settings.System.SCREEN_OFF_TIMEOUT, 30000);
+    }
+
+
+    /**
+     * Set screen dormant time by millis, must declare the
+     * 屏幕休眠时间等信息，必须申报
+     * {@link Manifest.permission#WRITE_SETTINGS} permission in its manifest.
+     *
+     * @param context
+     * @return
+     */
+    public static boolean setScreenDormantTime(Context context, int millis) {
+        return Settings.System.putInt(context.getContentResolver(),
+                Settings.System.SCREEN_OFF_TIMEOUT, millis);
+    }
+
 }
